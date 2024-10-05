@@ -7,7 +7,6 @@ public class IceString
 {
     // Note: Don't use : String::split(), String::indexOf(), String::lastIndexOf(), String::substring(), Regex.Match(), etc...
 
-
     public int FirstIndexOf(string str, string subStr, int startPos = 0)
     {
         subStr = subStr.ToLower();
