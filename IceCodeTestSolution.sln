@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IceCodeTest", "IceCodeTest\IceCodeTest.csproj", "{10718F9A-0B93-4287-B87F-E30009838CA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestIceCodeTest", "TestIceCodeTest\TestIceCodeTest.csproj", "{53EEEFBE-8ADF-42F8-821B-A01BC749536B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{10718F9A-0B93-4287-B87F-E30009838CA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10718F9A-0B93-4287-B87F-E30009838CA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10718F9A-0B93-4287-B87F-E30009838CA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10718F9A-0B93-4287-B87F-E30009838CA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53EEEFBE-8ADF-42F8-821B-A01BC749536B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53EEEFBE-8ADF-42F8-821B-A01BC749536B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53EEEFBE-8ADF-42F8-821B-A01BC749536B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53EEEFBE-8ADF-42F8-821B-A01BC749536B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
