@@ -5,54 +5,54 @@ namespace IceCodeTest;
 
 public class IceString
 {
-    // DOn't use : String::split(), String::indexOf(), String::lastIndexOf(), String::substring(), Regex.Match(), etc...
+    // Note: Don't use : String::split(), String::indexOf(), String::lastIndexOf(), String::substring(), Regex.Match(), etc...
 
 
-    public int FirstIndexOf(string str, string subStr)
+    public int FirstIndexOf(string str, string subStr, int startPos = 0)
     {
         subStr = subStr.ToLower();
         string lStr = str.ToLower();
         int subStrLen = subStr.Length;
-        if(subStrLen == 0 || subStrLen > lStr.Length)
+        int strLen = lStr.Length;
+        if(subStrLen == 0 || subStrLen > strLen)
         {
-            //throw String.Exception($"IndexOf: SubString must be in the length range of 1-{Str.Length}");
             return -1;
         }
         
-        // seek first character in Str that matches first character in subStr
-        // if found , store position and compare remainer of subStr characters to determine
-        //  - if all corresponding characters in Str match, if so return stored position
-        //  - if all corresponding characters do not match - got step 1 at positoin (stored-pos+1)
+        // seek first character in str that matches first character in subStr
+        // if found , position (position stoed in i) , then compare remainer of subStr characters to determine
+        //  - if all corresponding characters in str match, if so return stored position (reutn i)
+        //  - if corresponding characters do not match - go back to step 1 at positoin (i+1)
         // if no match founrd - return -1
 
-        int lastStartPos = 0;
-        int posOfLastOccurOfFirstChar = lStr.Length-subStr.Length+1;
+        int lastPosToSearch = strLen - subStrLen;
    
-        int i = 0;
-        for( ; i < posOfLastOccurOfFirstChar ; i++) 
+        for(int i = startPos ; i < lastPosToSearch ; i++) 
         {
-            if(lStr[i] == subStr[0]) // check first character of subStr
+            // check if first character of subStr and lStr for match
+            if(lStr[i] == subStr[0])
             {
-                lastStartPos = i;
+                // first character matches, check the remained of the subStr
                 int j = 1;
 
-                while( j < subStrLen && lStr[lastStartPos+j] == subStr[j] ) j++;
+                while( j < subStrLen && lStr[i + j] == subStr[j] )
+                {
+                    j++;
+                } 
                 
-                if(j < subStrLen)
+                if(j >= subStrLen)
                 {
-                    i = lastStartPos+1;
-                }
-                else
-                {
-                    return lastStartPos;
+                    return i;
                 }
             }
         }
 
+        // no match found
         return -1;
     }
 
-    public string SubString(string str, int startPos, int endPos = -1)
+    // SubString: Currently only used to manage command line arguments when supplying a file name with "-f <filename>"
+    public string SubString(string str, int startPos, int subStrLen = -1)
     {
         int sLen = str.Length;
         if(startPos < 0 || startPos >= sLen)
@@ -60,40 +60,39 @@ public class IceString
             return "";
         }
 
-        if(endPos != -1)
+        // adding subStrLen for completion, bt this is not used in the Code Test (always defaults to -1)
+        int endPos = (subStrLen != -1) ? Math.Min(startPos + subStrLen, sLen) : sLen; 
+       
+        StringBuilder sb = new StringBuilder(endPos - startPos); // supply init capacity to void calls to reallocaton
+        for(int n = startPos ; n < endPos; n++)
         {
-            sLen = (endPos < sLen) ? endPos+1 : sLen;
-        }
-       StringBuilder sb = new StringBuilder();
-       for(int n = startPos ; n < sLen; n++)
-       {
             sb.Append(str[n]);
-       }
+        }
 
-       return sb.ToString();
+        return sb.ToString();
     }
-
 
     public string IndexOfAll(string str, string subStr)
     {
         StringBuilder sb = new StringBuilder();
         int subStrLen = subStr.Length;
-
         int pos;
-        int thisPos;
-        if((thisPos = FirstIndexOf(str, subStr)) != -1)
+        int thisPos = 0;
+        
+        if((thisPos = FirstIndexOf(str, subStr, thisPos)) != -1)
         {
-            sb.Append($"{thisPos+1}");              // using +1 as the Code Test appears to be 1 based and not 0 (zero) based
+            sb.Append($"{thisPos+1}");       // using +1 as the Code Test is 1-based and not 0-based
 
             thisPos += subStrLen; 
-            while((pos = FirstIndexOf(SubString(str, thisPos), subStr)) != -1)
+            while((pos = FirstIndexOf(str, subStr, thisPos)) != -1)
             {
-                sb.Append($", {thisPos+pos+1}");    // using +1 as the Code Test appears to be 1 based and not 0 (zero) based
-                thisPos += (pos+subStrLen);
+                sb.Append($", {pos+1}");    // using +1 as the Code Test is 1-based and not 0-based
+                thisPos = (pos+subStrLen);
             }
             return sb.ToString();
         }
 
         return "<no matches>";
     }
+
 }

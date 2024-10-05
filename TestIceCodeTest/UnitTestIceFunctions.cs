@@ -15,6 +15,16 @@ public class UnitTestIceFunctions
         Assert.AreEqual(expectedResult, actVal);
     }
 
+    [TestMethod]
+    [DataRow("Polly put the kettle on, polly put the kettle on, polly put the kettle on we'll all have tea", "Polly", 0, 0)]
+    [DataRow("Polly put the kettle on, polly put the kettle on, polly put the kettle on we'll all have tea", "Kettle", 0, 14)]
+    [DataRow("Polly put the kettle on, polly put the kettle on, polly put the kettle on we'll all have tea", "Kettle", 19, 39)]
+    public void TestMethodIceFirstIndexOfWithStart(string testString, string testSubString, int startPos, int expectedResult)
+    {
+        var iStr = new IceString();
+        var actVal = iStr.FirstIndexOf(testString, testSubString, startPos);
+        Assert.AreEqual(expectedResult, actVal);
+    }
 
     [TestMethod]
     [DataRow("Polly1Polly2Polly3", 6, "Polly2Polly3")]
@@ -27,25 +37,27 @@ public class UnitTestIceFunctions
     }
 
     [TestMethod]
-    [DataRow("Polly1Polly2Polly3", 6, 11, "Polly2")]
-    [DataRow("Dolly and Molly and Polly and Lolly", 10, 24, "Molly and Polly")]
-    public void TestMethodIceFirstSubStringWithEndPos(string testString, int startPos, int endPos, string expectedResults)
+    [DataRow("Polly1Polly2Polly3", 6, 6, "Polly2")]
+    [DataRow("Polly1Polly2Polly3", 6, 5, "Polly")]
+    [DataRow("Dolly and Molly and Polly and Lolly", 10, 15, "Molly and Polly")]
+    [DataRow("Polly1Polly2Polly3", 6, 7, "Polly2P")]
+    public void TestMethodIceFirstSubStringWithEndPos(string testString, int startPos, int subStrLen, string expectedResults)
     {
         var iStr = new IceString();
-        var actVal = iStr.SubString(testString, startPos, endPos);
-       Assert.AreEqual(expectedResults, actVal);
+        var actVal = iStr.SubString(testString, startPos, subStrLen);
+        Assert.AreEqual(expectedResults, actVal);
     }
-  
 
     [TestMethod]
     [DataRow("Polly1Polly2Polly3", "Polly", "1, 7, 13")]
+    [DataRow("Polly put the kettle on, polly put the kettle on, polly put the kettle on we'll all have tea", "put", "7, 32, 57")]
+    // Code Test Examples
     [DataRow("Polly put the kettle on, polly put the kettle on, polly put the kettle on we'll all have tea", "Polly", "1, 26, 51")]
     [DataRow("Polly put the kettle on, polly put the kettle on, polly put the kettle on we'll all have tea", "polly", "1, 26, 51")]
     [DataRow("Polly put the kettle on, polly put the kettle on, polly put the kettle on we'll all have tea", "ll", "3, 28, 53, 78, 82")]
     [DataRow("Polly put the kettle on, polly put the kettle on, polly put the kettle on we'll all have tea", "Ll", "3, 28, 53, 78, 82")]
     [DataRow("Polly put the kettle on, polly put the kettle on, polly put the kettle on we'll all have tea", "X", "<no matches>")]
     [DataRow("Polly put the kettle on, polly put the kettle on, polly put the kettle on we'll all have tea", "Polx", "<no matches>")]
-    [DataRow("Polly put the kettle on, polly put the kettle on, polly put the kettle on we'll all have tea", "put", "7, 32, 57")]
     public void TestMethodIceIndexOfAll(string testString, string testSubString, string expectedResults)
     {
         var iStr = new IceString();
