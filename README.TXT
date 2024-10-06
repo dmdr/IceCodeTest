@@ -6,7 +6,7 @@ $ dotnet run
 
 -- Output
 ICE Code Test
-Runing default tests:
+Running default tests:
 
 Subtext: Polly
 Output: 1, 26, 51
