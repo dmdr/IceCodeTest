@@ -3,7 +3,7 @@ using System.Text;
 
 namespace IceCodeTest;
 
-public class IceString
+public class IceTextMatch
 {
     // Note: Don't use : String::split(), String::indexOf(), String::lastIndexOf(), String::substring(), Regex.Match(), etc...
 

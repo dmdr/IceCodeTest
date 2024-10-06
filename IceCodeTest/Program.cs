@@ -20,7 +20,7 @@ namespace IceCodeTest
         string testString = "";
         string testFileName = "";
 
-        var iStr = new IceString();
+        var iTextMatch = new IceTextMatch();
         string actVal = "";
 
         if(args.Length > 0)
@@ -32,7 +32,7 @@ namespace IceCodeTest
             switch(inputType[1])
             {
               case 'f':
-                testFileName = iStr.SubString(inputType, 2).Trim();
+                testFileName = iTextMatch.SubString(inputType, 2).Trim();
                 if(!ReadFromFile(testFileName, ref searchText, ref testString))
                 {
                   searchText = "";
@@ -48,7 +48,7 @@ namespace IceCodeTest
           Console.WriteLine($"Running test from file {testFileName}:\n");
 
           // var watch = System.Diagnostics.Stopwatch.StartNew();
-          actVal = iStr.IndexOfAll(testString, searchText);
+          actVal = iTextMatch.IndexOfAll(testString, searchText);
           // watch.Stop();
           // Console.WriteLine($"Time(ms): {watch.ElapsedMilliseconds}");
           Console.WriteLine($"Subtext: {searchText}\nOutput: {actVal}\n");
@@ -67,7 +67,7 @@ namespace IceCodeTest
 
           foreach(var thisSubStr in subStrTests) 
           {
-            actVal = iStr.IndexOfAll(testString, thisSubStr);
+            actVal = iTextMatch.IndexOfAll(testString, thisSubStr);
             Console.WriteLine($"Subtext: {thisSubStr}\nOutput: {actVal}\n");
           }
         }
