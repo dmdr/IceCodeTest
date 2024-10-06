@@ -45,12 +45,10 @@ $ dotnet run "-f search.txt"
 Test Harness:
 =============
 Tests are defined in TestIceCodeTest\UnitTestIceFunctions.cs file
-To Run using the MSTest harness (From the root folder where the IceCodeTestSolution.sln file is located) 
-
-running:
+To Run tests using the test harness (from the root folder where the IceCodeTestSolution.sln file is located) 
+run:
 
 $ dotnet test
 
-
 Test Sample output:
-Passed!  - Failed:     0, Passed:    19, Skipped:     0, Total:    19, Duration: 90 ms - TestIceCodeTest.dll (net7.0)
+Passed!  - Failed:     0, Passed:    22, Skipped:     0, Total:    22, Duration: 88 ms - TestIceCodeTest.dll (net7.0)

@@ -1,11 +1,18 @@
-using System.Reflection;
 using System.Text;
 
 namespace IceCodeTest;
 
+/// <summary>
+/// Class <c>IceTextMatch</c> for the functionally for the code test problem
+///  This functionallity could also be added as extension methods into an existing pre-build class
+/// </summary>
 public class IceTextMatch
 {
-    // Note: Don't use : String::split(), String::indexOf(), String::lastIndexOf(), String::substring(), Regex.Match(), etc...
+
+    /// <summary>
+    /// Method <c>FirstIndexOf</c> return zero-based position of subStr in str starting from startPos.
+    /// Returns -1 is not match found
+    /// </summary>
 
     public int FirstIndexOf(string str, string subStr, int startPos = 0)
     {
@@ -18,15 +25,15 @@ public class IceTextMatch
             return -1;
         }
         
-        // seek first character in str that matches first character in subStr
-        // if found , position (position stoed in i) , then compare remainer of subStr characters to determine
-        //  - if all corresponding characters in str match, if so return stored position (reutn i)
-        //  - if corresponding characters do not match - go back to step 1 at positoin (i+1)
+        // Seek first character in str that matches first character in subStr
+        // if found, (position stored in i), then compare remainer of subStr characters to determine ...
+        //  - if all corresponding characters in str match, then return stored position (return i)
+        //  - if corresponding characters do not match - then continue inital caracter search.
         // if no match founrd - return -1
 
         int lastPosToSearch = strLen - subStrLen;
    
-        for(int i = startPos ; i < lastPosToSearch ; i++) 
+        for(int i = startPos ; i <= lastPosToSearch ; i++) 
         {
             // check if first character of subStr and lStr for match
             if(lStr[i] == subStr[0])
@@ -50,7 +57,12 @@ public class IceTextMatch
         return -1;
     }
 
-    // SubString: Currently only used to manage command line arguments when supplying a file name with "-f <filename>"
+    /// <summary>
+    /// Method <c>SubString</c> return substring of str starting at startPos and optioanlly ending at subStrLen
+    ///  subStrLen will defaults to -1 indicating it will return to the end of Str
+    ///  Note: Currently only used to manage command line arguments when supplying a file name with "-f <filename>"
+    /// </summary>
+
     public string SubString(string str, int startPos, int subStrLen = -1)
     {
         int sLen = str.Length;
@@ -59,7 +71,7 @@ public class IceTextMatch
             return "";
         }
 
-        // adding subStrLen for completion, bt this is not used in the Code Test (always defaults to -1)
+        // adding (optional) subStrLen for completion (defaults to -1)
         int endPos = (subStrLen != -1) ? Math.Min(startPos + subStrLen, sLen) : sLen; 
        
         StringBuilder sb = new StringBuilder(endPos - startPos); // supply init capacity to void calls to reallocaton
@@ -71,6 +83,9 @@ public class IceTextMatch
         return sb.ToString();
     }
 
+    /// <summary>
+    /// Method <c>IndexOfAll</c> return a string that contains all the (1-based) positions of subStr in str 
+    /// </summary>
     public string IndexOfAll(string str, string subStr)
     {
         StringBuilder sb = new StringBuilder();

@@ -4,7 +4,6 @@ using IceCodeTest;
 [TestClass]
 public class UnitTestIceFunctions
 {
-
     [TestMethod]
     [DataRow("Polly put the kettle on, polly put the kettle on, polly put the kettle on we'll all have tea", "Polly", 0)]
     [DataRow("Polly put the kettle on, polly put the kettle on, polly put the kettle on we'll all have tea", "Kettle", 14)]
@@ -49,8 +48,11 @@ public class UnitTestIceFunctions
     }
 
     [TestMethod]
+    [DataRow("Pol", "Pol", "1")]
+    [DataRow("Polly1Polly2Polly3", "", "<no matches>")]
     [DataRow("Polly1Polly2Polly3", "Polly", "1, 7, 13")]
     [DataRow("Polly put the kettle on, polly put the kettle on, polly put the kettle on we'll all have tea", "put", "7, 32, 57")]
+    [DataRow("Polly put the kettle on, polly put the kettle on, polly put the kettle on we'll all have tea", "Polly put the kettle on, polly put the kettle on, polly put the kettle on we'll all have tea", "1")]
     // Code Test Examples
     [DataRow("Polly put the kettle on, polly put the kettle on, polly put the kettle on we'll all have tea", "Polly", "1, 26, 51")]
     [DataRow("Polly put the kettle on, polly put the kettle on, polly put the kettle on we'll all have tea", "polly", "1, 26, 51")]
