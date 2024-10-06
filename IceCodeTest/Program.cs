@@ -12,10 +12,6 @@ namespace IceCodeTest
     {
         Console.WriteLine("ICE Code Test");
 
-        // var iStr = new IceString();
-        // string testStr = "Testing123";
-        // Console.WriteLine($"Index of 'Test' in ${testStr} is: {iStr.FirstIndexOf(testStr, "Test")}");
-
         string searchText = "";
         string testString = "";
         string testFileName = "";
@@ -98,50 +94,3 @@ namespace IceCodeTest
 
   }
 }
-
-/*
-Output after running application (from the IceCodeTest sub-folder)
-Running:
-dotnet run
-
--- Output
-ICE Code Test
-Runing default tests:
-
-Subtext: Polly
-Output: 1, 26, 51
-
-Subtext: polly
-Output: 1, 26, 51
-
-Subtext: ll
-Output: 3, 28, 53, 78, 82
-
-Subtext: Ll
-Output: 3, 28, 53, 78, 82
-
-Subtext: X
-Output: <no matches>
-
-Subtext: Polx
-Output: <no matches>
--------------------
-
-
-Run tking input from a text file (see search.txt)
-Where the first line is the subtext to search for (Polly for example), and the rest of the file is input text
-
-To run (using search.txt): 
-[dotnet run "-f search.txt"]
-
-
-Test Harness:
-to Run uses using the MSTest test harness, 
-(From the root folder where the IceCodeTestSolution.sln file is located) 
-run:
-[dotnet test]
-
-Sample output:
-Passed!  - Failed:     0, Passed:    19, Skipped:     0, Total:    19, Duration: 90 ms - TestIceCodeTest.dll (net7.0)
-
-*/
