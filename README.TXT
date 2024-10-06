@@ -44,7 +44,9 @@ $ dotnet run "-f search.txt"
 
 Test Harness:
 =============
+Tests are defined in TestIceCodeTest\UnitTestIceFunctions.cs file
 To Run using the MSTest harness (From the root folder where the IceCodeTestSolution.sln file is located) 
+
 running:
 
 $ dotnet test
