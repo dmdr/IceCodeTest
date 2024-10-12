@@ -9,8 +9,7 @@ public class UnitTestIceFunctions
     [DataRow("Polly put the kettle on, polly put the kettle on, polly put the kettle on we'll all have tea", "Kettle", 14)]
     public void TestMethodIceFirstIndexOf(string testString, string testSubString, int expectedResult)
     {
-        var iTextMatch = new IceTextMatch();
-        var actVal = iTextMatch.FirstIndexOf(testString, testSubString);
+        var actVal = IceTextMatch.FirstIndexOf(testString, testSubString);
         Assert.AreEqual(expectedResult, actVal);
     }
 
@@ -20,8 +19,7 @@ public class UnitTestIceFunctions
     [DataRow("Polly put the kettle on, polly put the kettle on, polly put the kettle on we'll all have tea", "Kettle", 19, 39)]
     public void TestMethodIceFirstIndexOfWithStart(string testString, string testSubString, int startPos, int expectedResult)
     {
-        var iTextMatch = new IceTextMatch();
-        var actVal = iTextMatch.FirstIndexOf(testString, testSubString, startPos);
+        var actVal = IceTextMatch.FirstIndexOf(testString, testSubString, startPos);
         Assert.AreEqual(expectedResult, actVal);
     }
 
@@ -30,8 +28,7 @@ public class UnitTestIceFunctions
     [DataRow("Dolly and Molly and Polly and Lolly", 20, "Polly and Lolly")]
     public void TestMethodIceFirstSubString(string testString, int startPos, string expectedResults)
     {
-        var iTextMatch = new IceTextMatch();
-        var actVal = iTextMatch.SubString(testString, startPos);
+        var actVal = IceTextMatch.SubString(testString, startPos);
         Assert.AreEqual(expectedResults, actVal);
     }
 
@@ -42,8 +39,7 @@ public class UnitTestIceFunctions
     [DataRow("Polly1Polly2Polly3", 6, 7, "Polly2P")]
     public void TestMethodIceFirstSubStringWithEndPos(string testString, int startPos, int subStrLen, string expectedResults)
     {
-        var iTextMatch = new IceTextMatch();
-        var actVal = iTextMatch.SubString(testString, startPos, subStrLen);
+        var actVal = IceTextMatch.SubString(testString, startPos, subStrLen);
         Assert.AreEqual(expectedResults, actVal);
     }
 
@@ -62,8 +58,7 @@ public class UnitTestIceFunctions
     [DataRow("Polly put the kettle on, polly put the kettle on, polly put the kettle on we'll all have tea", "Polx", "<no matches>")]
     public void TestMethodIceIndexOfAll(string testString, string testSubString, string expectedResults)
     {
-        var iTextMatch = new IceTextMatch();
-        var actVal = iTextMatch.IndexOfAll(testString, testSubString);
+        var actVal = IceTextMatch.IndexOfAll(testString, testSubString);
 
         Assert.AreEqual(expectedResults, actVal);
     }

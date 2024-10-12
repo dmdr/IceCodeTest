@@ -10,50 +10,49 @@ namespace IceCodeTest
 
     public static void Main(string[] args)
     {
-        Console.WriteLine("ICE Code Test");
+      Console.WriteLine("ICE Code Test");
 
-        string searchText = "";
-        string testString = "";
-        string testFileName = "";
+      string searchText = "";
+      string testString = "";
+      string testFileName = "";
 
-        var iTextMatch = new IceTextMatch();
-        string actVal = "";
+      string actVal = "";
 
-        if(args.Length > 0)
+      if (args.Length > 0)
+      {
+        // dotnet run "-f search.txt" will use details in search.txt (first line is the subStr and remained is the texr to search)
+        var inputType = args[0];
+        if (inputType.Length > 1 && inputType[0] == '-')
         {
-          // dotnet run "-f search.txt" will use details in search.txt (first line is the subStr and remained is the texr to search)
-          var inputType = args[0];
-          if(inputType.Length > 1 && inputType[0] == '-')
+          switch (inputType[1])
           {
-            switch(inputType[1])
-            {
-              case 'f':
-                testFileName = iTextMatch.SubString(inputType, 2).Trim();
-                if(!ReadFromFile(testFileName, ref searchText, ref testString))
-                {
-                  searchText = "";
-                  testString = "";
-                }
-                break;
-            }
+            case 'f':
+              testFileName = IceTextMatch.SubString(inputType, 2).Trim();
+              if (!ReadFromFile(testFileName, ref searchText, ref testString))
+              {
+                searchText = "";
+                testString = "";
+              }
+              break;
           }
         }
-        // "dotnet run" will use this details values
-        if(testString.Length > 0)
-        {
-          Console.WriteLine($"Running test from file {testFileName}:\n");
+      }
+      // "dotnet run" will use this details values
+      if (testString.Length > 0)
+      {
+        Console.WriteLine($"Running test from file {testFileName}:\n");
 
-          // var watch = System.Diagnostics.Stopwatch.StartNew();
-          actVal = iTextMatch.IndexOfAll(testString, searchText);
-          // watch.Stop();
-          // Console.WriteLine($"Time(ms): {watch.ElapsedMilliseconds}");
-          Console.WriteLine($"Subtext: {searchText}\nOutput: {actVal}\n");
-        }
-        else
-        { 
-          Console.WriteLine("Running default tests:\n");
-          testString = "Polly put the kettle on, polly put the kettle on, polly put the kettle on we'll all have tea";
-          string[] subStrTests = {
+        // var watch = System.Diagnostics.Stopwatch.StartNew();
+        actVal = IceTextMatch.IndexOfAll(testString, searchText);
+        // watch.Stop();
+        // Console.WriteLine($"Time(ms): {watch.ElapsedMilliseconds}");
+        Console.WriteLine($"Subtext: {searchText}\nOutput: {actVal}\n");
+      }
+      else
+      {
+        Console.WriteLine("Running default tests:\n");
+        testString = "Polly put the kettle on, polly put the kettle on, polly put the kettle on we'll all have tea";
+        string[] subStrTests = {
             "Polly",
             "polly",
             "ll",
@@ -61,25 +60,25 @@ namespace IceCodeTest
             "X",
             "Polx" };
 
-          foreach(var thisSubStr in subStrTests) 
-          {
-            actVal = iTextMatch.IndexOfAll(testString, thisSubStr);
-            Console.WriteLine($"Subtext: {thisSubStr}\nOutput: {actVal}\n");
-          }
+        foreach (var thisSubStr in subStrTests)
+        {
+          actVal = IceTextMatch.IndexOfAll(testString, thisSubStr);
+          Console.WriteLine($"Subtext: {thisSubStr}\nOutput: {actVal}\n");
         }
+      }
 
     }
 
     private static bool ReadFromFile(string filePathName, ref string searchText, ref string testString)
-    { 
+    {
       Console.WriteLine($"FileName: {filePathName}");
-      if(File.Exists(filePathName))
+      if (File.Exists(filePathName))
       {
         var lines = File.ReadAllLines(filePathName);
-        if(lines.Length > 2)
+        if (lines.Length > 2)
         {
           searchText = lines[0];
-          testString = string.Join("",lines.Skip(1).ToArray());
+          testString = string.Join("", lines.Skip(1).ToArray());
           Console.WriteLine($"Reading file {filePathName}, searchText: {searchText}");
           //Console.WriteLine($"teststring: {testString}");
           return true;
