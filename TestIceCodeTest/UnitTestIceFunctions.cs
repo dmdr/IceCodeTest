@@ -63,4 +63,15 @@ public class UnitTestIceFunctions
         Assert.AreEqual(expectedResults, actVal);
     }
 
+    [TestMethod]
+    [DataRow("Polly1 Polly2 Polly3", ' ', new string[] {"Polly1", "Polly2", "Polly3"})]
+    [DataRow("Polly1 Polly2 ", ' ', new string[] {"Polly1", "Polly2"})]
+    [DataRow("Polly1 Polly2  Polly3", ' ', new string[] {"Polly1", "Polly2", "Polly3"})]
+    [DataRow("  Polly1   Polly2   Polly3  ", ' ', new string[] {"Polly1", "Polly2", "Polly3"})]
+    public void TestMethodIceSplit(string testString, char splitChar, string[] expectedResults)
+    {
+        var actVal = IceTextMatch.Split(testString, splitChar);
+
+        CollectionAssert.AreEqual(expectedResults, actVal);
+    }
 }

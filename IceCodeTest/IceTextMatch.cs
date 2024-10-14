@@ -108,5 +108,37 @@ public class IceTextMatch
 
         return "<no matches>";
     }
+    
+    /// <summary>
+    /// Method <c>Split</c> return a string array after splitting str by splitChar 
+    /// </summary>
+    public static string[] Split(string str, char splitChar = ' ')
+    {
+        var res = new List<string>();
+        int startPos = 0;
+        bool bInSplit = true;   // true to handle leading split characters
+        int idx = 0;
+        for( ; idx < str.Length ; idx++ )
+        {
+            if(str[idx] == splitChar)
+            {
+                if(!bInSplit) // skip multiple splitChar's
+                {
+                    res.Add(IceTextMatch.SubString(str, startPos, idx-startPos));
+                    bInSplit = true;
+                }
+            }
+            else if(bInSplit)
+            {
+                bInSplit = false;
+                startPos = idx;
+            }
+        }
+        if(!bInSplit && (idx > startPos))
+        {
+           res.Add(IceTextMatch.SubString(str, startPos, idx)); 
+        }
 
+        return res.ToArray();
+    }
 }
