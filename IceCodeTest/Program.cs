@@ -18,20 +18,20 @@ namespace IceCodeTest
 
       string actVal = "";
 
-      if(args.Length > 0)
+      if (args.Length > 0)
       {
         // dotnet run "-f search.txt" will use details in search.txt (first line is the subStr and remaining is the texr to search)
         var inputType = args[0];
-        if( inputType.Length > 1)
+        if (inputType.Length > 1)
         {
           var argsArr = IceTextMatch.Split(inputType);
-          if(argsArr.Length > 1)
+          if (argsArr.Length > 1)
           {
-            switch(argsArr[0])
+            switch (argsArr[0])
             {
               case "-f":
                 testFileName = argsArr[1];
-                if(!ReadFromFile(testFileName, ref searchText, ref testString))
+                if (!ReadFromFile(testFileName, ref searchText, ref testString))
                 {
                   searchText = "";
                   testString = "";

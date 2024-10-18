@@ -8,6 +8,10 @@ namespace IceCodeTest;
 /// </summary>
 public class IceTextMatch
 {
+    /// <summary>
+    /// prevent IceTextMatch from being instantiated
+    /// </summary>
+    private IceTextMatch() { }
 
     /// <summary>
     /// Method <c>FirstIndexOf</c> return zero-based position of subStr in str starting from startPos.
@@ -108,7 +112,7 @@ public class IceTextMatch
 
         return "<no matches>";
     }
-    
+
     /// <summary>
     /// Method <c>Split</c> return a string array after splitting str by splitChar 
     /// </summary>
@@ -118,25 +122,25 @@ public class IceTextMatch
         int startPos = 0;
         bool bInSplit = true;   // true to handle leading split characters
         int idx = 0;
-        for( ; idx < str.Length ; idx++ )
+        for (; idx < str.Length; idx++)
         {
-            if(str[idx] == splitChar)
+            if (str[idx] == splitChar)
             {
-                if(!bInSplit) // skip multiple splitChar's
+                if (!bInSplit) // skip multiple splitChar's
                 {
-                    res.Add(IceTextMatch.SubString(str, startPos, idx-startPos));
+                    res.Add(IceTextMatch.SubString(str, startPos, idx - startPos));
                     bInSplit = true;
                 }
             }
-            else if(bInSplit)
+            else if (bInSplit)
             {
                 bInSplit = false;
                 startPos = idx;
             }
         }
-        if(!bInSplit && (idx > startPos))
+        if (!bInSplit && (idx > startPos))
         {
-           res.Add(IceTextMatch.SubString(str, startPos, idx)); 
+            res.Add(IceTextMatch.SubString(str, startPos, idx));
         }
 
         return res.ToArray();
