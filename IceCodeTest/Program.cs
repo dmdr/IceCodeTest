@@ -2,12 +2,26 @@
 
 //using System.Diagnostics.Contracts;
 
+
+// to Test run - from root folder
+// dotnet test
+//
+// to run from the root folder
+// dotnet run --project .\IceCodeTest\IceCodeTest.csproj
+// or
+// dotnet run  "-f .\IceCodeTest\search.txt" --project .\IceCodeTest\IceCodeTest.csproj
+//
+// or from the IceCodeTest sub folder
+//
+// dotnet run
+// or
+// dotnet run  "-f search.txt"
+//
+
 namespace IceCodeTest
 {
   public class IceCodeTestProject
   {
-
-
     public static void Main(string[] args)
     {
       Console.WriteLine("ICE Code Test");

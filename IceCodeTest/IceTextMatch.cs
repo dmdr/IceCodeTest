@@ -4,7 +4,7 @@ namespace IceCodeTest;
 
 /// <summary>
 /// Class <c>IceTextMatch</c> for the functionally for the code test problem
-///  This functionallity could also be added as extension methods into an existing pre-build class
+/// This functionallity could also be added as extension methods into an existing pre-build class
 /// </summary>
 public class IceTextMatch
 {
